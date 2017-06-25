@@ -1,0 +1,22 @@
+{
+  "name": "redux-orm-angular",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.ts",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/didomi/redux-orm-angular.git"
+  },
+  "keywords": [
+    "angular",
+    "redux",
+    "orm"
+  ],
+  "author": "Jawad Stouli <jawad.stouli@gmail.com> (https://www.didomi.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/didomi/redux-orm-angular/issues"
+  },
+  "homepage": "https://github.com/didomi/redux-orm-angular#readme"
+}
