@@ -1,6 +1,6 @@
 {
   "name": "redux-orm-angular",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Helpers for integrating Angular and Redux ORM",
   "main": "index.ts",
   "scripts": {
