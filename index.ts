@@ -14,11 +14,6 @@ class ORMSelector {
     modelName: string;
 
     /**
-     * The name of the slice in the Redux store that holds the ORM data
-     */
-    stateSliceKey: string;
-
-    /**
      * @param string modelName The name of the model to query
      * @param string stateSliceKey The name of the slice in the Redux store that holds the ORM data
      */
@@ -30,8 +25,6 @@ class ORMSelector {
         } else {
             throw new Error('A valid model name (string) or model (object) must be provided to selectData');
         }
-
-        this.stateSliceKey = stateSliceKey;
     }
 
     /**
@@ -129,11 +122,8 @@ class ORMSelector {
             return [];
         }
 
-        // Get the slice of the state that holds the ORM data
-        const stateSlice = state[this.stateSliceKey];
-
         // Create a session from the ORM instance
-        const session = ORM.instance.session(stateSlice || ORM.instance.emptyDBState);
+        const session = ORM.instance.session(state || ORM.instance.emptyDBState);
         const model = session[this.modelName];
 
         return model;
