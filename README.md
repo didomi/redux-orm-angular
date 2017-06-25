@@ -20,14 +20,14 @@ export class MyNgComponent {
 
 **Table of Contents**
 
-- [Installation](#)
-- [Usage](#)
-    - [Setup redux-orm and ORM.instance](#)
-    - [Import selectData](#)
-    - [Query the Redux ORM](#)
-- [Example](#)
-- [License](#)
-- [Sponsor](#)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Setup redux-orm and ORM.instance](#setup-redux-orm-and-orm-instance)
+    - [Import selectData](#import-selectdata)
+    - [Query the Redux ORM](#query-the-redux-orm)
+- [Example](#example)
+- [License](#license)
+- [Sponsor](#sponsor)
 
 ## Installation
 
