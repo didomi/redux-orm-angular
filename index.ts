@@ -7,7 +7,7 @@ import { ORM, Model } from 'redux-orm';
  * This call replicates the API from redux-orm so the query syntax is the same.
  * Only "read" functions are available: all, get, hasId, withId
  */
-class ORMSelector {
+export class ORMSelector {
     /**
      * The name of the model that we are querying
      */
@@ -15,9 +15,8 @@ class ORMSelector {
 
     /**
      * @param string modelName The name of the model to query
-     * @param string stateSliceKey The name of the slice in the Redux store that holds the ORM data
      */
-    constructor(model: Object | string, stateSliceKey = 'data') {
+    constructor(model: Object | string) {
         if (typeof model === 'function' && model['modelName']) {
             this.modelName = model['modelName'];
         } else if(typeof model === 'string') {
@@ -95,6 +94,7 @@ class ORMSelector {
             try {
                 return this.getModelFromState(state).withId(id);
             } catch(error) {
+                /* istanbul ignore else */
                 if (error.message.indexOf(`instance with id ${id} not found`) !== -1) {
                     // No instance matches the query
                     // Simply return null
@@ -102,6 +102,7 @@ class ORMSelector {
                 }
                 
                 // Unhandled error, re-throw
+                /* istanbul ignore next */
                 throw error;
             }  
         }
@@ -119,7 +120,7 @@ class ORMSelector {
         // This is not ideal but that's how angular-redux does it as well because we could be in a decorator
         // and do not have access to the Angular objects (components, services, etc.)
         if (!ORM.instance) {
-            return [];
+            throw new Error('ORM.instance should be set before using `selectData`');
         }
 
         // Create a session from the ORM instance
@@ -141,8 +142,7 @@ class ORMSelector {
  * Only "read" functions (withId, all) are available.
  * 
  * @param {Object | string} model The name of the Model or the Model object that we are querying
- * @param string stateSliceKey The name of the slice that holds the ORM data in the state
  */
-export function selectData(model: Object | string, stateSliceKey = 'data') {
-    return new ORMSelector(model, stateSliceKey);
+export function selectData(model: Object | string): ORMSelector {
+    return new ORMSelector(model);
 }

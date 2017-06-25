@@ -108,6 +108,7 @@ export function QuerySet(getModelFromState): QuerySetSelector {
     // Create a function on the selector for each wrapped function defined in wrappedFunctions
     wrappedFunctions.forEach(fn => {
         selector[fn.name] = function() {
+            /* istanbul ignore else */
             if (fn.type === 'clause') {
                 // The function is a "clause" (like a filter or an order by)
                 // We push it onto the chain of calls and we return the selector so that the caller can keep chaining
@@ -130,6 +131,7 @@ export function QuerySet(getModelFromState): QuerySetSelector {
 
                 return selector;
             } else {
+                /* istanbul ignore next */
                 throw new Error(`Unknown function type "${fn.type}"`);
             } 
         }
