@@ -18,6 +18,8 @@ export class MyNgComponent {
 }
 ```
 
+---
+
 **Table of Contents**
 
 - [Installation](#installation)
