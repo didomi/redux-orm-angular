@@ -7,7 +7,7 @@ Helpers for integrating [angular-redux](https://github.com/angular-redux/store) 
 [angular-redux](https://github.com/angular-redux/store) provides bindings for using Redux with Angular 2+ applications. [redux-orm](https://github.com/tommikaikkonen/redux-orm) is a simple ORM to manage entities in the Redux store.
 
 This package enables querying entities from [redux-orm](https://github.com/tommikaikkonen/redux-orm) directly from Angular components. 
-You can subscribe to observable on all queries supported by [redux-orm](https://github.com/tommikaikkonen/redux-orm) and do things like:
+You can subscribe to an observable on any query supported by [redux-orm](https://github.com/tommikaikkonen/redux-orm) and do things like:
 
 ```javascript
 import { selectData } from 'redux-orm-angular';
@@ -17,6 +17,17 @@ export class MyNgComponent {
     @select(selectData(MyItem).all().filter(item => item.price > 10).orderBy('price')) items: Observable<Array<MyItem>>;
 }
 ```
+
+**Table of Contents**
+
+- [Installation](#)
+- [Usage](#)
+    - [Setup redux-orm and ORM.instance](#)
+    - [Import selectData](#)
+    - [Query the Redux ORM](#)
+- [Example](#)
+- [License](#)
+- [Sponsor](#)
 
 ## Installation
 
@@ -136,3 +147,11 @@ export class MyNgComponent {
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Sponsor
+
+<a href="https://www.didomi.io">
+    <img src="https://www.didomi.io/wp-content/uploads/2017/01/cropped-didomi-horizontal-1.png" alt="Logo of Didomi" width="200" />
+</a>
+
+`redux-orm-angular` is developed and maintained by [Didomi](https://www.didomi.io), an end-to-end solution for managing data privacy and user consent.
