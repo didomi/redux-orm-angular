@@ -14,8 +14,7 @@ export type QuerySetSelector = {
     last(): QuerySetSelector,
     orderBy: QuerySetSelector,
     toModelArray(): QuerySetSelector,
-    toRefArray(): QuerySetSelector,
-    filter: QuerySetSelector
+    toRefArray(): QuerySetSelector
 };
 
 /**
