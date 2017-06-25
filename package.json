@@ -29,6 +29,7 @@
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
     "chai": "^4.0.2",
+    "coveralls": "^2.13.1",
     "mocha": "^3.4.2",
     "nyc": "^11.0.2",
     "redux": "^3.7.0",
@@ -36,7 +37,6 @@
     "ts-node": "^3.1.0",
     "typescript": "^2.3.4"
   },
-
   "nyc": {
     "require": [
       "ts-node/register"
