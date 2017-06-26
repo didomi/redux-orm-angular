@@ -116,15 +116,29 @@ export class ORMSelector {
      * @return Object A session model
      */
     getModelFromState(state) {
+        const config = ORM.angularConfig;
+
         // We use a global shared ORM instance that is expected to be set for the project during setup
         // This is not ideal but that's how angular-redux does it as well because we could be in a decorator
         // and do not have access to the Angular objects (components, services, etc.)
-        if (!ORM.instance) {
-            throw new Error('ORM.instance should be set before using `selectData`');
+        if (!config) {
+            throw new Error('ORM.angularConfig should be set before using `selectData`');
+        }
+
+        if (!config.instance) {
+            throw new Error('Impossible to find the ORM instance to use. Make sure you have configured ORM.angularConfig.instance to the ORM instance that you want to use with `selectData`');
+        }
+
+        if (!config.stateKey) {
+            throw new Error('Impossible to find the state key from the config. Make sure you have configured ORM.angularConfig.stateKey to a non-empty value');
+        }
+
+        if (!state[config.stateKey]) {
+            throw new Error('Impossible to find the DB state; make sure you have configured ORM.angularConfig.stateKey and that you have a reducer running your ORM');
         }
 
         // Create a session from the ORM instance
-        const session = ORM.instance.session(state || ORM.instance.emptyDBState);
+        const session = config.instance.session(state[config.stateKey]);
         const model = session[this.modelName];
 
         return model;

@@ -24,7 +24,7 @@ export class MyNgComponent {
 
 - [Installation](#installation)
 - [Usage](#usage)
-    - [Setup redux-orm and ORM.instance](#setup-redux-orm-and-orm-instance)
+    - [Configuration](#configuration)
     - [Import selectData](#import-selectdata)
     - [Query the Redux ORM](#query-the-redux-orm)
 - [Example](#example)
@@ -41,11 +41,22 @@ The package has peer dependencies on `redux-orm` only. Your app will require `re
 
 ## Usage
 
-### Setup `redux-orm` and `ORM.instance`
+### Configuration
 
-The first step to use this package is to install and configure `redux-orm` in your project. See [redux-orm](https://github.com/tommikaikkonen/redux-orm) documentation for more information.
+**Setup `redux-orm`**
 
-After initiating an `ORM` instance and registering models, you need to store that instance on the `ORM` class:
+The first step to use this package is to install and configure `redux-orm` in your project with a reducer indicating where the DB state should be stored. See [redux-orm](https://github.com/tommikaikkonen/redux-orm) documentation for more information. We also assume that `redux` and `angular-redux/store` are setup, and that you have a Redux store available.
+
+**Set `ORM.angularConfig`**
+
+This package relies configuration properties indicating what `redux-orm` instance to use and what slice of the state hosts the ORM database.
+
+The configuration is provided as an `angularConfig` static property set on the `ORM` class exported by `redux-orm`:
+
+ - `angularConfig.instance`: the `redux-orm` instance to use.
+ - `angularConfig.stateKey`: the key in the Redux state that holds the ORM database and that your reducer is acting on. The database should be instantiated by your code separately with an empty DB state.
+
+After initiating an `ORM` instance and registering models, you need to add the configuration to the `ORM` class:
 
 ```javascript
 import { ORM } from 'redux-orm';
@@ -54,12 +65,15 @@ import { MyModel } from './models';
 const orm = new ORM();
 orm.register(Post);
 
-ORM.instance = orm; // Add this line to your project
+ORM.angularConfig = {
+    instance: orm,
+    stateKey: 'data',
+}; // Add this object to your project
 ```
 
-That instance of the ORM is used by the `selectData` function to create a session and query the ORM.
+That instance of the ORM is used by the `selectData` function to create a session on the `stateKey` from the state and query the ORM.
 
-**Warning:** Do not skip this step as it is required for the helper function to work correctly. An exception will be thrown if `ORM.instance` is not set correctly.
+**Warning:** Do not skip this step as it is required for the helper function to work correctly. Exceptions will be thrown if it `ORM.angularConfig` is not set correctly.
 
 ### Import `selectData`
 
