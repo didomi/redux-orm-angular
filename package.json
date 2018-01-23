@@ -1,11 +1,14 @@
 {
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "redux-orm-angular",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Helpers for integrating Angular and Redux ORM",
   "main": "index.ts",
   "scripts": {
+    "build": "ng-packagr -p package.json",
     "test": "mocha --require ts-node/register --recursive test/*.ts",
-    "coverage": "nyc npm test"
+    "coverage": "nyc npm test",
+    "publish": "npm run build && npm publish dist"
   },
   "repository": {
     "type": "git",
@@ -16,23 +19,32 @@
     "redux",
     "orm"
   ],
+  "ngPackage": {
+    "lib": {
+      "entryFile": "index.ts",
+      "externals": {
+        "redux-orm": "ORM"
+      }
+    }
+  },
   "author": "Jawad Stouli <jawad.stouli@gmail.com> (https://www.didomi.io)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/didomi/redux-orm-angular/issues"
   },
   "homepage": "https://github.com/didomi/redux-orm-angular#readme",
-  "peerDependencies": {
-    "redux-orm": "^0.9.0"
-  },
+  "peerDependencies": { 
+    "redux-orm": "^0.9.0" 
+  }, 
   "devDependencies": {
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
     "chai": "^4.0.2",
     "coveralls": "^2.13.1",
     "mocha": "^3.4.2",
+    "ng-packagr": "^1.6.0",
     "nyc": "^11.0.2",
-    "redux": "^3.7.0",
+    "redux": "^3.7.0", 
     "redux-orm": "^0.9.3",
     "ts-node": "^3.1.0",
     "typescript": "^2.3.4"
