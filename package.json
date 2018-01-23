@@ -1,9 +1,11 @@
 {
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
   "name": "redux-orm-angular",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Helpers for integrating Angular and Redux ORM",
   "main": "index.ts",
   "scripts": {
+    "build": "ng-packagr -p package.json",
     "test": "mocha --require ts-node/register --recursive test/*.ts",
     "coverage": "nyc npm test"
   },
@@ -16,6 +18,11 @@
     "redux",
     "orm"
   ],
+  "ngPackage": {
+    "lib": {
+      "entryFile": "index.ts"
+    }
+  },
   "author": "Jawad Stouli <jawad.stouli@gmail.com> (https://www.didomi.io)",
   "license": "MIT",
   "bugs": {
@@ -31,6 +38,7 @@
     "chai": "^4.0.2",
     "coveralls": "^2.13.1",
     "mocha": "^3.4.2",
+    "ng-packagr": "^1.6.0",
     "nyc": "^11.0.2",
     "redux": "^3.7.0",
     "redux-orm": "^0.9.3",

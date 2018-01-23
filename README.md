@@ -49,7 +49,7 @@ The first step to use this package is to install and configure `redux-orm` in yo
 
 **Set `ORM.angularConfig`**
 
-This package relies configuration properties indicating what `redux-orm` instance to use and what slice of the state hosts the ORM database.
+This package relies on configuration properties indicating what `redux-orm` instance to use and what slice of the state hosts the ORM database.
 
 The configuration is provided as an `angularConfig` static property set on the `ORM` class exported by `redux-orm`:
 
