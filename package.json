@@ -8,7 +8,7 @@
     "build": "ng-packagr -p package.json",
     "test": "mocha --require ts-node/register --recursive test/*.ts",
     "coverage": "nyc npm test",
-    "publish": "npm run build && npm publish dist"
+    "publish": "npm publish dist"
   },
   "repository": {
     "type": "git",
@@ -33,9 +33,9 @@
     "url": "https://github.com/didomi/redux-orm-angular/issues"
   },
   "homepage": "https://github.com/didomi/redux-orm-angular#readme",
-  "peerDependencies": { 
-    "redux-orm": "^0.9.0" 
-  }, 
+  "peerDependencies": {
+    "redux-orm": "^0.9.0"
+  },
   "devDependencies": {
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
@@ -44,7 +44,7 @@
     "mocha": "^3.4.2",
     "ng-packagr": "^1.6.0",
     "nyc": "^11.0.2",
-    "redux": "^3.7.0", 
+    "redux": "^3.7.0",
     "redux-orm": "^0.9.3",
     "ts-node": "^3.1.0",
     "typescript": "^2.3.4"
